@@ -10,40 +10,30 @@ PREFIX    ?= /usr/local
 BINPREFIX = $(PREFIX)/bin
 
 SRC = sres.c helpers.c
+HDR = helpers.h
 OBJ = $(SRC:.c=.o)
 
 all: CFLAGS += -Os
 all: LDFLAGS += -s
-all: options sres
+all: sres
 
-options:
-	@echo "sres build options:"
-	@echo "CC      = $(CC)"
-	@echo "CFLAGS  = $(CFLAGS)"
-	@echo "LDFLAGS = $(LDFLAGS)"
-	@echo "LIBS    = $(LIBS)"
-	@echo "PREFIX  = $(PREFIX)"
+$(OBJ): $(SRC) $(HDR) Makefile
 
 .c.o:
-	@echo "CC $<"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 sres: $(OBJ)
-	@echo CC -o $@
-	@$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
-
-clean:
-	@echo "cleaning"
-	@rm -f $(OBJ) sres
+	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
 
 install:
-	@echo "installing executable files to $(DESTDIR)$(BINPREFIX)"
-	@mkdir -p "$(DESTDIR)$(BINPREFIX)"
-	@cp sres "$(DESTDIR)$(BINPREFIX)"
-	@chmod 755 "$(DESTDIR)$(BINPREFIX)/sres"
+	mkdir -p "$(DESTDIR)$(BINPREFIX)"
+	cp sres "$(DESTDIR)$(BINPREFIX)"
+	chmod 755 "$(DESTDIR)$(BINPREFIX)/sres"
 
 uninstall:
-	@echo "removing executable files from $(DESTDIR)$(BINPREFIX)"
-	@rm -f $(DESTDIR)$(BINPREFIX)/sres
+	rm -f $(DESTDIR)$(BINPREFIX)/sres
 
-.PHONY: all options clean install uninstall
+clean:
+	rm -f $(OBJ) sres
+
+.PHONY: all clean install uninstall
