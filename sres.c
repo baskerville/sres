@@ -26,10 +26,10 @@ int main (int argc, char *argv[]) {
                 return EXIT_SUCCESS;
                 break;
             case 'H':
-                return_what = RETURN_WIDTH;
+                return_what = RETURN_HEIGHT;
                 break;
             case 'W':
-                return_what = RETURN_HEIGHT;
+                return_what = RETURN_WIDTH;
                 break;
         }
     }
