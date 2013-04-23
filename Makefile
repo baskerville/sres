@@ -1,4 +1,4 @@
-VERSION = 0.2
+VERSION = 0.1
 
 CC      = gcc
 LIBS    = -lm -lxcb
