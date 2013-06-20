@@ -27,8 +27,7 @@ sres: $(OBJ)
 
 install:
 	mkdir -p "$(DESTDIR)$(BINPREFIX)"
-	cp sres "$(DESTDIR)$(BINPREFIX)"
-	chmod 755 "$(DESTDIR)$(BINPREFIX)/sres"
+	cp -p sres "$(DESTDIR)$(BINPREFIX)"
 
 uninstall:
 	rm -f $(DESTDIR)$(BINPREFIX)/sres
