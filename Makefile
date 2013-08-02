@@ -1,13 +1,13 @@
 VERSION = 0.1
 
-CC      = gcc
-LIBS    = -lm -lxcb
-CFLAGS  = -std=c99 -pedantic -Wall -Wextra -I$(PREFIX)/include
+CC       = gcc
+LIBS     = -lm -lxcb
+CFLAGS  += -std=c99 -pedantic -Wall -Wextra -I$(PREFIX)/include
 CFLAGS  += -D_POSIX_C_SOURCE=200112L -DVERSION=\"$(VERSION)\"
-LDFLAGS = -L$(PREFIX)/lib
+LDFLAGS += -L$(PREFIX)/lib
 
 PREFIX    ?= /usr/local
-BINPREFIX = $(PREFIX)/bin
+BINPREFIX  = $(PREFIX)/bin
 
 SRC = sres.c helpers.c
 HDR = helpers.h
