@@ -9,15 +9,16 @@ LDFLAGS += -L$(PREFIX)/lib
 PREFIX    ?= /usr/local
 BINPREFIX  = $(PREFIX)/bin
 
-SRC = sres.c helpers.c
-HDR = helpers.h
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 all: CFLAGS += -Os
 all: LDFLAGS += -s
 all: sres
 
-$(OBJ): $(SRC) $(HDR) Makefile
+include Sourcedeps
+
+$(OBJ): Makefile
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

@@ -1,0 +1,2 @@
+helpers.o: helpers.c helpers.h
+sres.o: sres.c helpers.h
