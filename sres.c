@@ -13,7 +13,7 @@ int main (int argc, char *argv[]) {
 
     int return_what = RETURN_BOTH;
     char format[MAXLEN] = {0};
-    char opt;
+    int opt;
 
     while ((opt = getopt(argc, argv, "vhHW")) != -1) {
         switch (opt) {
